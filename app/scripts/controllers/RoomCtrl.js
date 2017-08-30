@@ -1,6 +1,6 @@
 (function() {
     function RoomCtrl(Room) {
-        this.allRooms = angular.copy(Room.all)
+        this.allRooms = Room.getAll();
     }
             
     angular
