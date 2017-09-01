@@ -1,2 +1,4 @@
 <div class="chat-rooms-list" ng-repeat="chatroom in rooms.allRooms">{{chatroom.$value}}</div>
-<button ng-click="ModalOpenCtrl.open('lg', roomToAdd)">Add New Chat Room</button>
+<div ng-controller="ModalOpenCtrl as modal">
+    <button ng-click="modal.open()">Add New Chat Room</button>
+</div>

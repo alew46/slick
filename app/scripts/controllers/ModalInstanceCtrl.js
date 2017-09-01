@@ -1,15 +1,19 @@
 (function() {
-    function ModalInstanceCtrl($uibModalInstance, roomToAdd) {
+    function ModalInstanceCtrl($uibModalInstance) {
         
         
-        this.roomToAdd = roomToAdd
+        this.ok = function () {
+            $uibModalInstance.close('the room name');
+        };
         
-        
+        this.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
     
 
     }
             
     angular
         .module('slick')
-        .controller('ModalInstanceCtrl', [ModalInstanceCtrl]);
+        .controller('ModalInstanceCtrl', ['$uibModalInstance', ModalInstanceCtrl]);
 })();

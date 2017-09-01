@@ -1,29 +1,20 @@
 (function() {
-    function ModalOpenCtrl($uibModal, $log, $document) {
+    function ModalOpenCtrl($uibModal) {
         
         var $ctrl = this;
         
-        $ctrl.animationsEnabled = true;
         
-         $ctrl.open = function (size, roomToAdd) {
+         $ctrl.open = function () {
             
             var modalInstance = $uibModal.open({
-              animation: $ctrl.animationsEnabled,
               templateUrl: '/templates/modal.html',
               controller: 'ModalInstanceCtrl',
-              controllerAs: '$ctrl',
-              size: size,
-              resolve: {
-                roomToAdd: function () {
-                  return $ctrl.roomToAdd;
-                }
-              }
+              controllerAs: 'modal'
             });
 
             modalInstance.result.then(function (roomToAdd) {
-            }, function () {
-              $log.info('Modal dismissed at: ' + new Date());
-            });
+                console.log("Room to add", roomToAdd);
+            }, function(){});
           };
 
 
@@ -31,5 +22,5 @@
             
     angular
         .module('slick')
-        .controller('ModalOpenCtrl', [ModalOpenCtrl]);
+        .controller('ModalOpenCtrl', ['$uibModal', ModalOpenCtrl]);
 })();
