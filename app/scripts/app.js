@@ -17,10 +17,16 @@
                  url: '/rooms',
                  controller: 'RoomCtrl as rooms',
                  templateUrl: '/templates/rooms.html'
+            })
+         
+            .state('modal', {
+                 url: '/modal',
+                 controller: 'ModalInstanceCtrl as ModalInstance',
+                 templateUrl: '/templates/modal.html'
             });
      }
      
      angular
-         .module('slick', ['ui.router', 'firebase'])
+         .module('slick', ['ui.bootstrap', 'ui.router', 'firebase'])
          .config(config);
  })();
