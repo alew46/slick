@@ -21,6 +21,6 @@
      }
      
      angular
-         .module('slick', ['ui.router', 'firebase'])
+         .module('slick', ['ui.bootstrap', 'ui.router', 'firebase'])
          .config(config);
  })();
