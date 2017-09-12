@@ -1,4 +1,30 @@
-<div class="chat-rooms-list" ng-repeat="chatroom in rooms.allRooms">{{chatroom.$value}}</div>
-<div ng-controller="ModalOpenCtrl as modal">
-    <button ng-click="modal.open()">Add New Chat Room</button>
-</div>
+<body>
+    
+    <div class="room-view-wrapper">
+    
+        <div class="chat-rooms-sidebar">
+
+            <h1>Slick Chat</h1>
+
+            <div class="chat-rooms-list" ng-repeat="room in rooms.allRooms" ng-click="rooms.setActiveRoom(room)">{{room.$value}}</div>
+
+
+            <div class="rooms-list" ng-controller="ModalOpenCtrl as modal">
+                <button class="add-room-btn" ng-click="modal.open()">Add New Chat Room</button>
+            </div>
+
+        </div>
+
+        <!-- ng-show -->
+        <div class="messages-area" ng-show="rooms.activeRoom !== undefined">
+            <h2 class="big-room-name">{{ rooms.activeRoom.$value }}</h2>
+            <div ng-repeat="message in rooms.messages" ng-class-odd="'message-wrapper-odd'" ng-class-even="'message-wrapper-even'">
+                <p class="username"><strong>{{message.username}}</strong></p>
+                <p class="message-text">{{ message.content }}</p>
+                <p class="posted-at">{{ message.sentAt | date : "shortTime" }}</p>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
