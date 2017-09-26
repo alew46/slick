@@ -1,30 +1,31 @@
-<body>
-    
-    <div class="room-view-wrapper">
-    
-        <div class="chat-rooms-sidebar">
+<div class="room-view-wrapper">
 
-            <h1>Slick Chat</h1>
+    <div class="chat-rooms-sidebar">
 
-            <div class="chat-rooms-list" ng-repeat="room in rooms.allRooms" ng-click="rooms.setActiveRoom(room)">{{room.$value}}</div>
+        <h1>Slick Chat</h1>
+
+        <div class="chat-rooms-list" ng-repeat="room in rooms.allRooms" ng-click="rooms.setActiveRoom(room)">{{room.$value}}</div>
 
 
-            <div class="rooms-list" ng-controller="ModalOpenCtrl as modal">
-                <button class="add-room-btn" ng-click="modal.open()">Add New Chat Room</button>
-            </div>
-
+        <div class="rooms-list" ng-controller="ModalOpenCtrl as modal">
+            <button class="add-room-btn" ng-click="modal.open()">Add New Chat Room</button>
         </div>
 
-        <!-- ng-show -->
-        <div class="messages-area" ng-show="rooms.activeRoom !== undefined">
-            <h2 class="big-room-name">{{ rooms.activeRoom.$value }}</h2>
-            <div ng-repeat="message in rooms.messages" ng-class-odd="'message-wrapper-odd'" ng-class-even="'message-wrapper-even'">
-                <p class="username"><strong>{{message.username}}</strong></p>
-                <p class="message-text">{{ message.content }}</p>
-                <p class="posted-at">{{ message.sentAt | date : "shortTime" }}</p>
-            </div>
-        </div>
-        
     </div>
-    
-</body>
+
+    <!-- ng-show -->
+    <div class="messages-area" ng-show="rooms.activeRoom !== undefined">
+        <h2 class="big-room-name">{{ rooms.activeRoom.$value }}</h2>
+        <div ng-repeat="message in rooms.messages" ng-class-odd="'message-wrapper-odd'" ng-class-even="'message-wrapper-even'">
+            <p class="username"><strong>{{message.username}}</strong></p>
+            <p class="message-text">{{ message.content }}</p>
+            <p class="posted-at">{{ message.sentAt | date : "shortTime" }}</p>
+        </div>
+    </div>
+
+    <div class="message-box" ng-show="rooms.activeRoom !== undefined">
+        <input type="text" name="input" class="message-input" ng-model="rooms.newMessageText" ng-keypress="rooms.checkKey($event)">
+        <button class="submit-message-btn" type="button" ng-click="rooms.sendMessage()">Send New Message</button>
+   </div>
+
+</div>
